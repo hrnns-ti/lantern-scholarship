@@ -21,6 +21,8 @@ function toneClasses(tone: Tone) {
     }
 }
 
+
+
 const Icon = {
     Logo: (p: React.SVGProps<SVGSVGElement>) => (
         <svg viewBox="0 0 24 24" fill="none" {...p}>
@@ -278,11 +280,11 @@ function Button({
                     variant = "primary",
                     type = "button",
                 }: {
-    children: React.ReactNode;
-    onClick?: () => void;
-    className?: string;
-    variant?: ButtonVariant;
-    type?: "button" | "submit" | "reset";
+    children: React.ReactNode,
+    onClick?: () => void,
+    className?: string,
+    variant?: ButtonVariant,
+    type?: "button" | "submit" | "reset",
 }) {
     const base =
         "inline-flex items-center justify-center rounded-2xl px-4 py-2 text-sm font-semibold transition " +
@@ -294,7 +296,7 @@ function Button({
             ? // NOTE: text-white placed at the end so it never loses to other classes
             "bg-slate-900 hover:bg-slate-800 shadow-sm hover:shadow-md text-white"
             : variant === "secondary"
-                ? "border border-slate-200 bg-white/70 text-slate-900 hover:bg-white hover:border-slate-300"
+                ? "border border-slate-200 bg-white/70 text-slate-100 hover:bg-white hover:border-slate-300"
                 : "text-slate-700 hover:text-slate-900 hover:bg-slate-100";
 
     return (
@@ -344,10 +346,7 @@ function tagTone(tag: AnnouncementTag): Tone {
     return "gold";
 }
 
-/** --------------------------------
- *  App
- *  -------------------------------- */
-export default function App() {
+export function App() {
     const [menuOpen, setMenuOpen] = useState(false);
     const [query, setQuery] = useState("");
     const [filter, setFilter] = useState<"all" | AnnouncementTag>("all");
@@ -394,13 +393,15 @@ export default function App() {
     }, [announcements, filter, query]);
 
     return (
-        <div className="min-h-screen bg-[#f7f7fb] text-slate-900">
+        <div className="min-h-screen bg-[#f7f7fb] text-slate-100">
             {/* Background */}
             <div aria-hidden className="pointer-events-none fixed inset-0 -z-10 overflow-hidden">
-                <div className="absolute -top-36 left-1/2 h-140 w-140 -translate-x-1/2 rounded-full bg-amber-400/18 blur-3xl" />
-                <div className="absolute top-20 -right-55 h-155 w-155 rounded-full bg-sky-400/14 blur-3xl" />
-                <div className="absolute -bottom-55 -left-55 h-155 w-155 rounded-full bg-violet-400/10 blur-3xl" />
-                <div className="absolute inset-0 opacity-[0.08] bg-[radial-gradient(circle_at_1px_1px,rgba(15,23,42,.18)_1px,transparent_0)] bg-size-[24px_24px]" />
+                <div
+                    className="absolute -top-36 left-1/2 h-140 w-140 -translate-x-1/2 rounded-full bg-amber-400/18 blur-3xl"/>
+                <div className="absolute top-20 -right-55 h-155 w-155 rounded-full bg-sky-400/14 blur-3xl"/>
+                <div className="absolute -bottom-55 -left-55 h-155 w-155 rounded-full bg-violet-400/10 blur-3xl"/>
+                <div
+                    className="absolute inset-0 opacity-[0.08] bg-[radial-gradient(circle_at_1px_1px,rgba(15,23,42,.18)_1px,transparent_0)] bg-size-[24px_24px]"/>
             </div>
 
             {/* Header */}
@@ -408,18 +409,19 @@ export default function App() {
                 <Shell className="py-4">
                     <div className="flex items-center justify-between gap-3">
                         <div className="flex min-w-0 items-center gap-3">
-                            <div className="grid h-11 w-11 place-items-center rounded-2xl bg-white/70 ring-1 ring-slate-200 shadow-sm">
-                                <Icon.Logo className="h-6 w-6 text-amber-800" />
+                            <div
+                                className="grid h-11 w-11 place-items-center rounded-2xl bg-white/70 ring-1 ring-slate-200 shadow-sm">
+                                <Icon.Logo className="h-6 w-6 text-amber-800"/>
                             </div>
 
                             <div className="min-w-0">
                                 <div className="flex flex-wrap items-center gap-2">
-                                    <div className="truncate text-base font-semibold tracking-tight sm:text-lg">
+                                    <div className="truncate text-black font-semibold tracking-tight sm:text-lg">
                                         Lantern Scholarship Portal
                                     </div>
                                     <Badge tone="gold">Batch 2026</Badge>
                                     <div className="hidden items-center gap-2 sm:flex">
-                                        <span className="inline-flex h-2 w-2 rounded-full bg-emerald-500" />
+                                        <span className="inline-flex h-2 w-2 rounded-full bg-emerald-500"/>
                                         <span className="text-xs text-slate-500">Online • Monitoring aktif</span>
                                     </div>
                                 </div>
@@ -452,21 +454,21 @@ export default function App() {
 
                             <Button className="ml-2">
                                 Masuk
-                                <Icon.Login className="ml-2 h-4 w-4" />
+                                <Icon.Login className="ml-2 h-4 w-4"/>
                             </Button>
                         </nav>
 
                         {/* Mobile controls */}
                         <div className="flex items-center gap-2 md:hidden">
                             <Button className="px-3 py-2" aria-label="Login">
-                                <Icon.Login className="h-5 w-5" />
+                                <Icon.Login className="h-5 w-5"/>
                             </Button>
                             <button
                                 onClick={() => setMenuOpen(true)}
                                 className="grid h-10 w-10 place-items-center rounded-2xl border border-slate-200 bg-white/70 hover:bg-white transition focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-amber-400/70 focus-visible:ring-offset-2"
                                 aria-label="Open menu"
                             >
-                                <Icon.Menu className="h-5 w-5 text-slate-700" />
+                                <Icon.Menu className="h-5 w-5 text-slate-700"/>
                             </button>
                         </div>
                     </div>
@@ -474,11 +476,11 @@ export default function App() {
                     {/* Mobile drawer */}
                     {menuOpen && (
                         <div className="fixed inset-0 z-50 md:hidden">
-                            <div className="absolute inset-0 bg-slate-900/30" onClick={() => setMenuOpen(false)} />
+                            <div className="absolute inset-0 bg-slate-900/30" onClick={() => setMenuOpen(false)}/>
                             <div className="absolute right-0 top-0 h-full w-[86%] max-w-sm bg-white shadow-2xl">
                                 <div className="flex items-center justify-between border-b border-slate-200 px-4 py-4">
                                     <div className="flex items-center gap-2">
-                                        <Icon.Logo className="h-6 w-6 text-amber-800" />
+                                        <Icon.Logo className="h-6 w-6 text-amber-800"/>
                                         <div className="text-sm font-semibold">Menu</div>
                                     </div>
                                     <button
@@ -486,7 +488,7 @@ export default function App() {
                                         className="grid h-10 w-10 place-items-center rounded-2xl hover:bg-slate-100 transition"
                                         aria-label="Close menu"
                                     >
-                                        <Icon.X className="h-5 w-5 text-slate-700" />
+                                        <Icon.X className="h-5 w-5 text-slate-700"/>
                                     </button>
                                 </div>
 
@@ -504,7 +506,7 @@ export default function App() {
                                     <div className="pt-2">
                                         <Button className="w-full">
                                             Masuk
-                                            <Icon.Login className="ml-2 h-4 w-4" />
+                                            <Icon.Login className="ml-2 h-4 w-4"/>
                                         </Button>
                                     </div>
 
@@ -521,16 +523,19 @@ export default function App() {
             <main>
                 <Shell className="py-6 sm:py-10">
                     {/* Top notice */}
-                    <div className="mb-6 rounded-3xl border border-amber-200/70 bg-white/70 p-4 shadow-sm backdrop-blur">
+                    <div
+                        className="mb-6 rounded-3xl border border-amber-200/70 bg-white/70 p-4 shadow-sm backdrop-blur">
                         <div className="flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
                             <div className="flex items-start gap-3">
-                                <div className="grid h-11 w-11 place-items-center rounded-2xl bg-amber-500/10 text-amber-800 ring-1 ring-amber-500/15">
-                                    <Icon.Wrench className="h-5 w-5" />
+                                <div
+                                    className="grid h-11 w-11 place-items-center rounded-2xl bg-amber-500/10 text-amber-800 ring-1 ring-amber-500/15">
+                                    <Icon.Wrench className="h-5 w-5"/>
                                 </div>
                                 <div>
-                                    <div className="text-sm font-semibold">Ops Notice</div>
+                                    <div className="text-sm font-semibold text-slate-800">Ops Notice</div>
                                     <div className="text-sm text-slate-600">
-                                        Pemeliharaan singkat sebelum jadwal pengumuman. Jika ada kendala, laporkan melalui Helpdesk.
+                                        Pemeliharaan singkat sebelum jadwal pengumuman. Jika ada kendala, laporkan
+                                        melalui Helpdesk.
                                     </div>
                                 </div>
                             </div>
@@ -539,7 +544,7 @@ export default function App() {
                                     Hubungi Helpdesk
                                 </Button>
                                 <Button className="w-full sm:w-auto">
-                                    Cek Status <Icon.ArrowRight className="ml-2 h-4 w-4" />
+                                    Cek Status <Icon.ArrowRight className="ml-2 h-4 w-4"/>
                                 </Button>
                             </div>
                         </div>
@@ -548,12 +553,11 @@ export default function App() {
                     {/* Hero */}
                     <div className="grid gap-5 lg:grid-cols-12">
                         <Card className="relative overflow-hidden lg:col-span-8">
-                            <div className="absolute inset-0 bg-gradient-to-br from-amber-500/10 via-white/0 to-sky-500/10" />
+                            <div
+                                className="absolute inset-0 bg-linear-to-br from-amber-500/10 via-white/0 to-sky-500/10"/>
                             <div className="relative p-6 sm:p-8">
                                 <div className="flex flex-wrap items-center gap-2">
-                                    <Badge tone="gold">Pendaftaran dibuka</Badge>
-                                    <Badge tone="blue">Verifikasi berlangsung</Badge>
-                                    <Badge tone="slate">Pengumuman: tahap akhir</Badge>
+                                    <Badge tone="gold">Pengumuman</Badge>
                                 </div>
 
                                 <h1 className="mt-4 text-3xl font-semibold tracking-tight text-slate-900 sm:text-4xl">
@@ -564,18 +568,15 @@ export default function App() {
                                 </p>
 
                                 <div className="mt-6 grid gap-3 sm:grid-cols-2 xl:grid-cols-3">
-                                    <IconPill icon={<Icon.Shield className="h-5 w-5" />} label="Keamanan" value="Dokumen terenkripsi" />
-                                    <IconPill icon={<Icon.File className="h-5 w-5" />} label="Proses" value="Checklist kelengkapan" />
-                                    <IconPill icon={<Icon.Help className="h-5 w-5" />} label="Support" value="Respon < 24 jam" />
+                                    <IconPill icon={<Icon.Shield className="h-5 w-5"/>} label="Unggul"
+                                              value="Meluluskan +1000 Awardee"/>
+                                    <IconPill icon={<Icon.File className="h-5 w-5"/>} label="Financial Package"
+                                              value="Fully-Funded"/>
+                                    <IconPill icon={<Icon.Help className="h-5 w-5"/>} label="Prestige"
+                                              value="Networking Eksklusif"/>
                                 </div>
 
                                 <div className="mt-6 flex flex-col gap-2 sm:flex-row">
-                                    <Button className="w-full sm:w-auto">
-                                        Daftar Beasiswa <Icon.ArrowRight className="ml-2 h-4 w-4" />
-                                    </Button>
-                                    <Button variant="secondary" className="w-full sm:w-auto">
-                                        Unggah / Perbarui Dokumen
-                                    </Button>
                                     <Button variant="secondary" className="w-full sm:w-auto">
                                         Lihat Panduan
                                     </Button>
@@ -585,21 +586,25 @@ export default function App() {
                                 <div className="mt-8 rounded-3xl border border-slate-200/70 bg-white/70 p-5">
                                     <div className="flex items-center justify-between gap-3">
                                         <div>
-                                            <div className="text-sm font-semibold">Progress Seleksi (estimasi)</div>
+                                            <div className="text-sm font-semibold text-slate-900">Progress Seleksi (estimasi)</div>
                                             <div className="text-xs text-slate-500">
                                                 Indikator ringkas untuk memudahkan pemantauan.
                                             </div>
                                         </div>
-                                        <Badge tone="gold">78%</Badge>
+                                        <Badge tone="gold">76%</Badge>
                                     </div>
 
                                     <div className="mt-4">
                                         <div className="h-3 w-full rounded-full bg-slate-200">
-                                            <div className="h-3 w-[78%] rounded-full bg-gradient-to-r from-amber-500 to-slate-900" />
+                                            <div
+                                                className="h-3 w-[76%] rounded-full bg-linear-to-r from-amber-500 to-blue-300"/>
                                         </div>
                                         <div className="mt-3 flex justify-between text-xs text-slate-500">
                                             <span>Pendaftaran</span>
-                                            <span>Verifikasi</span>
+                                            <span>Seleksi #1</span>
+                                            <span>Seleksi #2</span>
+                                            <span>Seleksi #3</span>
+                                            <span>Verifikasi Peserta</span>
                                             <span>Pengumuman</span>
                                         </div>
                                     </div>
@@ -610,7 +615,7 @@ export default function App() {
                         {/* Steps */}
                         <Card className="lg:col-span-4">
                             <div className="p-6 sm:p-7">
-                                <SectionTitle title="Ringkasan Tahapan" desc="Status periode berjalan." />
+                                <SectionTitle title="Ringkasan Tahapan" desc="Status periode berjalan."/>
 
                                 <div className="mt-6 space-y-4">
                                     {[
@@ -619,21 +624,21 @@ export default function App() {
                                             desc: "Lengkapi biodata & unggah dokumen dasar.",
                                             tone: "green" as Tone,
                                             right: <Badge tone="green">Dibuka</Badge>,
-                                            icon: <Icon.Check className="h-5 w-5" />,
+                                            icon: <Icon.Check className="h-5 w-5"/>,
                                         },
                                         {
                                             title: "Verifikasi Dokumen",
                                             desc: "Admin memeriksa kelengkapan & kesesuaian.",
                                             tone: "blue" as Tone,
                                             right: <Badge tone="blue">Berlangsung</Badge>,
-                                            icon: <Icon.File className="h-5 w-5" />,
+                                            icon: <Icon.File className="h-5 w-5"/>,
                                         },
                                         {
                                             title: "Pengumuman",
                                             desc: "Daftar penerima tampil setelah verifikasi final.",
                                             tone: "gold" as Tone,
                                             right: <Badge tone="gold">Tahap akhir</Badge>,
-                                            icon: <Icon.Bell className="h-5 w-5" />,
+                                            icon: <Icon.Bell className="h-5 w-5"/>,
                                         },
                                     ].map((s, i) => (
                                         <div
@@ -641,11 +646,12 @@ export default function App() {
                                             className="flex items-start justify-between gap-4 rounded-3xl border border-slate-200/70 bg-white/70 p-4"
                                         >
                                             <div className="flex gap-3">
-                                                <div className={cn("grid h-11 w-11 place-items-center rounded-2xl ring-1", toneClasses(s.tone))}>
+                                                <div
+                                                    className={cn("grid h-11 w-11 place-items-center rounded-2xl ring-1", toneClasses(s.tone))}>
                                                     {s.icon}
                                                 </div>
                                                 <div>
-                                                    <div className="text-sm font-semibold">{s.title}</div>
+                                                    <div className="text-sm font-semibold text-slate-500">{s.title}</div>
                                                     <div className="mt-0.5 text-xs text-slate-500">{s.desc}</div>
                                                 </div>
                                             </div>
@@ -653,10 +659,12 @@ export default function App() {
                                         </div>
                                     ))}
 
-                                    <div className="rounded-3xl border border-slate-200/70 bg-gradient-to-br from-white/80 to-amber-50/60 p-4">
+                                    <div
+                                        className="rounded-3xl border border-slate-200/70 bg-linear-to-br from-white/80 to-amber-50/60 p-4">
                                         <div className="text-xs font-semibold text-slate-700">Catatan</div>
                                         <div className="mt-1 text-sm text-slate-600">
-                                            Akses daftar penerima bersifat terbatas dan hanya tersedia setelah verifikasi final.
+                                            Akses daftar penerima bersifat terbatas dan hanya tersedia setelah
+                                            verifikasi final.
                                         </div>
                                     </div>
                                 </div>
@@ -669,11 +677,12 @@ export default function App() {
                         <Card className="lg:col-span-8">
                             <div className="p-6 sm:p-7">
                                 <div className="flex flex-col gap-4 sm:flex-row sm:items-end sm:justify-between">
-                                    <SectionTitle title="Pengumuman" desc="Pembaruan terbaru dari portal." />
+                                    <SectionTitle title="Pengumuman" desc="Pembaruan terbaru dari portal."/>
 
-                                    <div className="w-full sm:w-[380px]">
+                                    <div className="w-full sm:w-95">
                                         <div className="relative">
-                                            <Icon.Search className="absolute left-3 top-1/2 h-4 w-4 -translate-y-1/2 text-slate-400" />
+                                            <Icon.Search
+                                                className="absolute left-3 top-1/2 h-4 w-4 -translate-y-1/2 text-slate-400"/>
                                             <input
                                                 value={query}
                                                 onChange={(e) => setQuery(e.target.value)}
@@ -690,10 +699,10 @@ export default function App() {
                                 {/* Filters */}
                                 <div className="mt-5 flex flex-wrap gap-2">
                                     {[
-                                        { key: "all", label: "Semua" },
-                                        { key: "Info", label: "Info" },
-                                        { key: "Maintenance", label: "Maintenance" },
-                                        { key: "Update", label: "Update" },
+                                        {key: "all", label: "Semua"},
+                                        {key: "Info", label: "Info"},
+                                        {key: "Maintenance", label: "Maintenance"},
+                                        {key: "Update", label: "Update"},
                                     ].map((b) => {
                                         const active = filter === (b.key as never);
                                         return (
@@ -725,7 +734,8 @@ export default function App() {
                                 {/* Announcement list */}
                                 <div className="mt-5 space-y-3">
                                     {filtered.length === 0 ? (
-                                        <div className="rounded-3xl border border-slate-200/70 bg-white/70 p-6 text-sm text-slate-600">
+                                        <div
+                                            className="rounded-3xl border border-slate-200/70 bg-white/70 p-6 text-sm text-slate-600">
                                             Tidak ada pengumuman yang cocok dengan pencarian kamu.
                                         </div>
                                     ) : (
@@ -734,23 +744,27 @@ export default function App() {
                                                 key={`${a.title}-${idx}`}
                                                 className="rounded-3xl border border-slate-200/70 bg-white/70 p-5 hover:bg-white/85 transition"
                                             >
-                                                <div className="flex flex-col gap-3 sm:flex-row sm:items-start sm:justify-between">
+                                                <div
+                                                    className="flex flex-col gap-3 sm:flex-row sm:items-start sm:justify-between">
                                                     <div className="flex items-start gap-3">
-                                                        <div className="grid h-11 w-11 place-items-center rounded-2xl bg-white/80 ring-1 ring-slate-200 text-slate-800">
+                                                        <div
+                                                            className="grid h-11 w-11 place-items-center rounded-2xl bg-white/80 ring-1 ring-slate-200 text-slate-800">
                                                             {a.tag === "Info" ? (
-                                                                <Icon.Bell className="h-5 w-5" />
+                                                                <Icon.Bell className="h-5 w-5"/>
                                                             ) : a.tag === "Maintenance" ? (
-                                                                <Icon.Wrench className="h-5 w-5" />
+                                                                <Icon.Wrench className="h-5 w-5"/>
                                                             ) : (
-                                                                <Icon.Sparkle className="h-5 w-5" />
+                                                                <Icon.Sparkle className="h-5 w-5"/>
                                                             )}
                                                         </div>
 
                                                         <div className="min-w-0">
-                                                            <div className="truncate text-sm font-semibold">{a.title}</div>
-                                                            <div className="mt-1 flex flex-wrap items-center gap-2 text-xs text-slate-500">
+                                                            <div
+                                                                className="truncate text-sm font-semibold">{a.title}</div>
+                                                            <div
+                                                                className="mt-1 flex flex-wrap items-center gap-2 text-xs text-slate-500">
                                                                 <span>{a.meta}</span>
-                                                                <span className="h-1 w-1 rounded-full bg-slate-300" />
+                                                                <span className="h-1 w-1 rounded-full bg-slate-300"/>
                                                                 <span>{a.date}</span>
                                                             </div>
                                                         </div>
@@ -764,8 +778,8 @@ export default function App() {
                                                 <p className="mt-3 text-sm text-slate-600">{a.body}</p>
 
                                                 <div className="mt-4 flex items-center justify-between">
-                                                    <Button variant="ghost" className="px-3 py-2">
-                                                        Lihat detail <Icon.ArrowRight className="ml-2 h-4 w-4" />
+                                                    <Button variant="primary" className="px-3 py-2 text-slate-100">
+                                                        Lihat detail <Icon.ArrowRight className="ml-2 h-4 w-4"/>
                                                     </Button>
                                                     <div className="text-xs text-slate-400">
                                                         ID: LS-{String(1020 + idx).padStart(4, "0")}
@@ -781,55 +795,60 @@ export default function App() {
                         {/* Applicant dashboard */}
                         <Card className="lg:col-span-4">
                             <div className="p-6 sm:p-7">
-                                <SectionTitle title="Dashboard Pelamar" desc="Akses fitur setelah login." />
+                                <SectionTitle title="Dashboard Pelamar" desc="Akses fitur setelah login."/>
 
                                 <div className="mt-6 rounded-3xl border border-slate-200/70 bg-white/70 p-5">
                                     <div className="text-xs font-semibold text-slate-600">Menu</div>
 
                                     <div className="mt-3 grid gap-2">
                                         {[
-                                            { t: "Dokumen", ico: <Icon.File className="h-4 w-4" /> },
-                                            { t: "Wawancara", ico: <Icon.Sparkle className="h-4 w-4" /> },
-                                            { t: "Penerima", ico: <Icon.Bell className="h-4 w-4" /> },
+                                            {t: "Dokumen", ico: <Icon.File className="h-4 w-4 text-white"/>},
+                                            {t: "Wawancara", ico: <Icon.Sparkle className="h-4 w-4 text-white"/>},
+                                            {t: "Penerima", ico: <Icon.Bell className="h-4 w-4 text-white"/>},
                                         ].map((x) => (
                                             <button
                                                 key={x.t}
                                                 disabled
-                                                className="flex items-center justify-between rounded-2xl border border-slate-200 bg-slate-100/60 px-4 py-3 text-sm font-semibold text-slate-400"
+                                                className="flex items-center justify-between rounded-2xl border border-slate-200 bg-slate-100/60 px-4 py-3 text-sm font-semibold text-slate-100"
                                                 title="Login diperlukan"
                                             >
                         <span className="inline-flex items-center gap-2">
                           <span className="opacity-70">{x.ico}</span> {x.t}
                         </span>
-                                                <Icon.ArrowRight className="h-4 w-4 opacity-40" />
+                                                <Icon.ArrowRight className="h-4 w-4 opacity-40"/>
                                             </button>
                                         ))}
                                     </div>
 
                                     <div className="mt-3 text-xs text-slate-500">
-                                        Untuk melihat daftar penerima, diperlukan verifikasi admin setelah pengumuman final.
+                                        Untuk melihat daftar penerima, diperlukan verifikasi admin setelah pengumuman
+                                        final.
                                     </div>
                                 </div>
 
-                                <div className="mt-4 rounded-3xl border border-slate-200/70 bg-gradient-to-br from-white/80 to-sky-50/60 p-5">
+                                <div
+                                    className="mt-4 rounded-3xl border border-slate-200/70 bg-linear-to-br from-white/80 to-sky-50/60 p-5">
                                     <div className="flex items-start gap-3">
-                                        <div className="grid h-11 w-11 place-items-center rounded-2xl bg-slate-900 text-white shadow-sm">
-                                            <Icon.Login className="h-5 w-5" />
+                                        <div
+                                            className="grid h-11 w-11 place-items-center rounded-2xl bg-slate-900 text-white shadow-sm">
+                                            <Icon.Login className="h-5 w-5"/>
                                         </div>
                                         <div>
                                             <div className="text-sm font-semibold">Login diperlukan</div>
                                             <div className="mt-1 text-sm text-slate-600">
-                                                Masuk untuk melihat status pendaftaran, notifikasi resmi, dan pengumuman personal.
+                                                Masuk untuk melihat status pendaftaran, notifikasi resmi, dan pengumuman
+                                                personal.
                                             </div>
                                         </div>
                                     </div>
 
                                     <div className="mt-4 flex flex-col gap-2">
                                         <Button className="w-full">
-                                            Masuk sekarang <Icon.ArrowRight className="ml-2 h-4 w-4" />
+                                            Masuk sekarang <Icon.ArrowRight className="ml-2 h-4 w-4"/>
                                         </Button>
                                         <Button variant="secondary" className="w-full">
-                                            Tanya Helpdesk <span className="ml-2 inline-flex"><Icon.Help className="h-4 w-4" /></span>
+                                            Tanya Helpdesk <span className="ml-2 inline-flex"><Icon.Help
+                                            className="h-4 w-4"/></span>
                                         </Button>
                                     </div>
                                 </div>
@@ -839,7 +858,8 @@ export default function App() {
 
                     {/* Footer */}
                     <footer className="mt-10 border-t border-slate-200/70 py-6">
-                        <div className="flex flex-col gap-3 text-xs text-slate-500 sm:flex-row sm:items-center sm:justify-between">
+                        <div
+                            className="flex flex-col gap-3 text-xs text-slate-500 sm:flex-row sm:items-center sm:justify-between">
                             <div>© {new Date().getFullYear()} Lantern Scholarship Committee</div>
                             <div className="flex flex-wrap gap-4">
                                 <a href="#" className="hover:text-slate-800 hover:underline">
