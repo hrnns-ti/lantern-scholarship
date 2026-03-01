@@ -60,3 +60,33 @@ force = true
 from = "/*"
 to = "/index.html"
 status = 200
+
+# ===== Caching (reduce revalidation / 304 spam) =====
+
+# favicon: cache setahun (browser nggak bolak-balik cek)
+[[headers]]
+for = "/favicon.ico"
+[headers.values]
+Cache-Control = "public, max-age=31536000, immutable"
+
+# assets hasil build vite: cache setahun
+[[headers]]
+for = "/assets/*"
+[headers.values]
+Cache-Control = "public, max-age=31536000, immutable"
+
+# robots & ops: cache 10 menit (cukup aman)
+[[headers]]
+for = "/robots.txt"
+[headers.values]
+Cache-Control = "public, max-age=4800"
+
+[[headers]]
+for = "/ops/*"
+[headers.values]
+Cache-Control = "public, max-age=4800"
+
+[[headers]]
+for = "/ledger/*.html"
+[headers.values]
+Cache-Control = "public, max-age=4800"
