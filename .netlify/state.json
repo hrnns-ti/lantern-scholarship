@@ -1,0 +1,18 @@
+{
+	"geolocation": {
+		"data": {
+			"country": {
+				"code": "ID",
+				"name": "Indonesia"
+			},
+			"subdivision": {
+				"code": "BT",
+				"name": "Banten"
+			},
+			"timezone": "Asia/Jakarta",
+			"latitude": -6.177,
+			"longitude": 106.6284
+		},
+		"timestamp": 1772333131332
+	}
+}

@@ -1,0 +1,62 @@
+[build]
+command = "npm run build"
+publish = "dist"
+
+[dev]
+command = "npm run dev"
+targetPort = 5173
+port = 8888
+
+# ===== Ledger (IDOR via query) =====
+[[redirects]]
+from = "/ledger"
+to = "/ledger/1.html"
+status = 200
+force = true
+query = { id = "1" }
+
+[[redirects]]
+from = "/ledger"
+to = "/ledger/2.html"
+status = 200
+force = true
+query = { id = "2" }
+
+[[redirects]]
+from = "/ledger"
+to = "/ledger/3.html"
+status = 200
+force = true
+query = { id = "3" }
+
+[[redirects]]
+from = "/ledger"
+to = "/ledger/4.html"
+status = 200
+force = true
+query = { id = "4" }
+
+[[redirects]]
+from = "/ledger"
+to = "/ledger/notfound.html"
+status = 404
+force = true
+
+# ===== Ops (Recon) =====
+[[redirects]]
+from = "/ops"
+to = "/ops/index.html"
+status = 200
+force = true
+
+[[redirects]]
+from = "/ops/"
+to = "/ops/index.html"
+status = 200
+force = true
+
+# ===== SPA fallback (kalau pakai React Router) =====
+[[redirects]]
+from = "/*"
+to = "/index.html"
+status = 200
